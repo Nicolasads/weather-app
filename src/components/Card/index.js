@@ -14,21 +14,20 @@ import {
   WeatherType,
 } from "./styles";
 
-export function CardComponent({ data }) {
-  const [favorite, setFavorite] = useState(false);
-  const [favoriteIcon, setFavoriteIcon] = useState("favorite-outline");
-  const [changeMetric, setChangeMetric] = useState(false);
+export function CardComponent({ data, changeMetric }) {
+  const [selected, setSelected] = useState(false);
+  const [favorite, setFavorite] = useState();
 
-  const favoriteCity = () => {
-    favorite ? setFavorite(false) : setFavorite(true);
-    favorite
-      ? setFavoriteIcon("favorite")
-      : setFavoriteIcon("favorite-outline");
+  const favoriteCity = (item, id) => {
+    setFavorite(item);
+    setSelected(id);
+
+    console.log(favorite);
   };
 
-  useEffect(() => {
-    console.log("data", data);
-  }, []);
+  function convertToF(celsius) {
+    return Math.round((celsius * 9) / 5 + 32);
+  }
 
   const cardRender = (item) => {
     return (
@@ -40,7 +39,11 @@ export function CardComponent({ data }) {
           </View>
 
           <View>
-            <CardHeaderTemp>{Math.round(item.temp)}ºC</CardHeaderTemp>
+            <CardHeaderTemp>
+              {changeMetric
+                ? convertToF(item.temp) + "ºF"
+                : Math.round(item.temp) + "ºC"}
+            </CardHeaderTemp>
           </View>
         </CardHeader>
 
@@ -50,15 +53,21 @@ export function CardComponent({ data }) {
               {item.weather.map((weather) => weather.description)}
             </WeatherType>
             <WeatherTemp>
-              {Math.round(item.temp_min)}ºC - {Math.round(item.temp_max)}ºC
+              {changeMetric
+                ? convertToF(item.temp_min) + "ºF"
+                : Math.round(item.temp_min) + "ºC"}{" "}
+              -
+              {changeMetric
+                ? convertToF(item.temp_max) + "ºF"
+                : Math.round(item.temp_max) + "ºC"}
             </WeatherTemp>
           </View>
 
-          <FavoriteButton onPress={() => favoriteCity()}>
+          <FavoriteButton onPress={() => favoriteCity(item, item.id)}>
             <MaterialIcons
-              name={favoriteIcon}
+              name={selected === item.id ? "favorite" : "favorite-outline"}
               size={30}
-              color={favorite ? "#b1b1b1" : "red"}
+              color={selected === item.id ? "red" : "#b1b1b1"}
             />
           </FavoriteButton>
         </CardBody>

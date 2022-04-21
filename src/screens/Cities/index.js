@@ -56,7 +56,9 @@ export default function Cities() {
       </Filters>
 
       <Content>
-        {getCities.length !== 0 && <CardComponent data={getCities} />}
+        {getCities.length !== 0 && (
+          <CardComponent data={getCities} changeMetric={temperature} />
+        )}
       </Content>
 
       <AddCountry visible={visible} close={() => setVisible(false)} />
