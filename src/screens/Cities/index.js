@@ -1,9 +1,13 @@
-import { Feather } from "@expo/vector-icons";
-import React, { useState } from "react";
-import { Text, TextInput, Switch } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Text, TextInput, Switch, View } from "react-native";
 import { useSelector } from "react-redux";
+import { getCitiesList } from "../../features/cities/citiesSlice";
+
 import { CardComponent } from "../../components/Card";
 import AddCountry from "../../components/AddCountry";
+import Favorites from "../../components/Favorites";
+
+import { Feather } from "@expo/vector-icons";
 import {
   AddButton,
   AddButtonText,
@@ -14,15 +18,19 @@ import {
   HeaderText,
   InputView,
 } from "./styles";
-import { getCitiesList } from "../../features/cities/citiesSlice";
 
 export default function Cities() {
   const [temperature, setTemperature] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
   const toggleSwitch = () => setTemperature((previousState) => !previousState);
 
   const getCities = useSelector(getCitiesList);
+
+  const changeModalVisible = (bool) => {
+    setVisible(bool);
+  };
 
   return (
     <Container>
@@ -39,8 +47,11 @@ export default function Cities() {
 
       <Filters>
         <InputView>
-          <TextInput placeholder="Filtrar cidade" />
-          <Feather name="search" size={24} color="#333" />
+          <TextInput
+            placeholder="Filtrar cidade"
+            onChangeText={(e) => setSearchText(e)}
+          />
+          <Feather name="search" size={24} color="#b1b1b1" />
         </InputView>
 
         <Switch
@@ -55,13 +66,17 @@ export default function Cities() {
         <Text> {temperature === true ? "ºF" : "ºC"} </Text>
       </Filters>
 
+      <Favorites changeMetric={temperature} />
+
       <Content>
-        {getCities.length !== 0 && (
-          <CardComponent data={getCities} changeMetric={temperature} />
-        )}
+        <CardComponent
+          data={getCities}
+          changeMetric={temperature}
+          filter={searchText}
+        />
       </Content>
 
-      <AddCountry visible={visible} close={() => setVisible(false)} />
+      <AddCountry visible={visible} close={changeModalVisible} />
     </Container>
   );
 }

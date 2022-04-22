@@ -1,6 +1,7 @@
 import { Feather } from "@expo/vector-icons";
 import React, { useState } from "react";
-import { View, Text, Modal, TextInput, Alert } from "react-native";
+import { View, Text, Modal, TextInput } from "react-native";
+import Toast from "react-native-toast-message";
 import { AsyncCard } from "../Card";
 import {
   AddCity,
@@ -38,7 +39,7 @@ export default function AddCountry({ visible, close }) {
     console.log("resultado", result.data);
   };
 
-  const addCidade = (item) => {
+  const addCidade = (item, bool) => {
     const pseudoId = new Date().getTime();
 
     const data = {
@@ -54,6 +55,15 @@ export default function AddCountry({ visible, close }) {
     };
 
     dispatch(addCityItem(data));
+
+    Toast.show({
+      type: "success",
+      text1: "Aviso",
+      text2: "Cidade adicionada com sucesso",
+      position: "bottom",
+    });
+
+    close(bool);
   };
 
   return (
@@ -92,7 +102,7 @@ export default function AddCountry({ visible, close }) {
                 </CardHeader>
 
                 <CardBody>
-                  <AddCity onPress={() => addCidade(data)}>
+                  <AddCity onPress={() => addCidade(data, false)}>
                     <Text style={{ color: "#008df3", fontSize: 15 }}>
                       Adicinar Cidade
                     </Text>

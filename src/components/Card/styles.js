@@ -9,6 +9,12 @@ export const Card = styled.TouchableOpacity`
   border-color: #c1c1c1;
 `;
 
+export const FavoriteText = styled.Text`
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 20px;
+`;
+
 export const CardWithoutTouchable = styled.View`
   background-color: #ffff;
   border-radius: 10px;
@@ -53,3 +59,7 @@ export const WeatherTemp = styled.Text`
 `;
 
 export const FavoriteButton = styled.TouchableOpacity``;
+
+export const RemoveItemButton = styled.TouchableOpacity`
+  margin-right: 15px;
+`;

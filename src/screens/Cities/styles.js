@@ -39,14 +39,14 @@ export const InputView = styled.View`
   align-items: center;
   justify-content: space-between;
   border-width: 1px;
-  border-color: #777;
+  border-color: #b1b1b1;
   border-radius: 8px;
   padding: 8px 15px 8px;
   width: 75%;
 `;
 
 export const Content = styled.View`
-  margin-top: 25px;
+  flex: 1;
 `;
 
 export const Card = styled.TouchableOpacity`
