@@ -66,7 +66,9 @@ export function CardComponent({ data, changeMetric, filter }) {
   const cardRender = (item) => {
     return (
       <>
-        <Card onPress={() => navigation.navigate("WeatherDetails", item)}>
+        <Card
+          onPress={() => navigation.navigate("WeatherDetails", { item: item })}
+        >
           <CardHeader>
             <View>
               <CardHeaderText>{item.name}</CardHeaderText>

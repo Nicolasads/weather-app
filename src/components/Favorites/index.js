@@ -33,7 +33,7 @@ export default function Favorites({ changeMetric }) {
   }, [getFavoritesList]);
 
   const renderItem = (item) => (
-    <Card onPress={() => navigation.navigate("WeatherDetails", item)}>
+    <Card onPress={() => navigation.navigate("WeatherDetails", { item: item })}>
       <CardContent>
         <View>
           <CardTitle> {item.name} </CardTitle>

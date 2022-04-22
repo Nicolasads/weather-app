@@ -23,6 +23,7 @@ import {
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { addCityItem } from "../../features/cities/citiesSlice";
+import { api, app_key } from "../../services/api";
 
 export default function AddCountry({ visible, close }) {
   const [city, setCity] = useState("");
@@ -31,8 +32,8 @@ export default function AddCountry({ visible, close }) {
   const dispatch = useDispatch();
 
   const getCity = async () => {
-    const result = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=2d2cb4371aebf9d61b381194aaf80784&exclude=minutely&units=metric&lang=pt`
+    const result = await api.get(
+      `weather?q=${city}&appid=${app_key}&exclude=minutely&units=metric&lang=pt`
     );
 
     setData(result.data);
