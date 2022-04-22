@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Text, TextInput, Switch, View } from "react-native";
+import React, { useState } from "react";
+import { Text, TextInput, Switch } from "react-native";
 import { useSelector } from "react-redux";
 import { getCitiesList } from "../../features/cities/citiesSlice";
 

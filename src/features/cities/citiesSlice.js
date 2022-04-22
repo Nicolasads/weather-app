@@ -33,6 +33,7 @@ export const citiesSlice = createSlice({
         temp: action.payload.temp,
         temp_max: action.payload.temp_max,
         temp_min: action.payload.temp_min,
+        weather: action.payload.weather,
       });
     },
     removeFromFavorites: (state, action) => {

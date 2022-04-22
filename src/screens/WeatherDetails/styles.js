@@ -1,6 +1,10 @@
 import styled from "styled-components/native";
 
-export const Header = styled.View``;
+export const Header = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
 
 export const BackButton = styled.TouchableOpacity`
   background-color: #008df3;
@@ -20,7 +24,7 @@ export const Body = styled.View``;
 
 export const TempDatas = styled.View`
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   margin-top: 40px;
 `;
@@ -44,7 +48,28 @@ export const CityInfos = styled.View`
 
 export const CityWeather = styled.Text`
   font-size: 23px;
-  color: #ff9900;
+  color: ${(props) =>
+    props.color === "nuvens quebradas"
+      ? "#6C6C6C"
+      : props.color === "poucas nuvens"
+      ? "#A3A3A3"
+      : props.color === "nuvens espalhadas"
+      ? "#A3A3A3"
+      : props.color === "chuva de chuveiro"
+      ? "#fff"
+      : props.color === "chuva"
+      ? "#fff"
+      : props.color === "tempestade"
+      ? "#fff"
+      : props.color === "neve"
+      ? "#fff"
+      : props.color === "névoa"
+      ? "#fff"
+      : props.color === "céu limpo"
+      ? "#FFA800"
+      : props.color === "poucas nuvens"
+      ? "#FFA800"
+      : "#fff"};
   text-transform: capitalize;
 `;
 
@@ -54,6 +79,4 @@ export const CityName = styled.Text`
   font-weight: 700;
 `;
 
-export const WeatherList = styled.View`
-  flex: 1;
-`;
+export const WeatherList = styled.View``;

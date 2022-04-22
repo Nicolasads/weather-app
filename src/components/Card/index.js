@@ -37,8 +37,6 @@ export function CardComponent({ data, changeMetric, filter }) {
     setFavorite(item);
     setSelected(id);
 
-    console.log(favorite);
-
     dispatch(addToFavorites(item));
     dispatch(removeCityItem({ id: item.id }));
   };

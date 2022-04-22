@@ -37,7 +37,6 @@ export default function AddCountry({ visible, close }) {
     );
 
     setData(result.data);
-    console.log("resultado", result.data);
   };
 
   const addCidade = (item, bool) => {

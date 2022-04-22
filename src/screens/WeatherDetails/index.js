@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Text, Image, View } from "react-native";
+import React, { useState } from "react";
+import { Image, View, Switch, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { api } from "../../services/api";
 import {
   BackButton,
   BackButtonText,
@@ -13,24 +12,22 @@ import {
   MinMax,
   TempDatas,
   Temperature,
-  WeatherList,
 } from "./styles";
-import sun from "../../assets/sun.png";
 import WeatherForecast from "../../components/WeatherForecast";
 
-export default function WeatherDetails({ route }) {
-  const [weatherData, setWeatherData] = useState([]);
+export default function WeatherDetails({ route, navigation }) {
+  const [temperature, setTemperature] = useState(false);
   const { item } = route.params;
 
-  // useEffect(() => {
-  //   api
-  //     .get(
-  //       "onecall?lat=-23.5475&lon=-46.6361&cnt=5&appid=2d2cb4371aebf9d61b381194aaf80784&exclude=minutely,hourly"
-  //     )
-  //     .then((response) => setWeatherData(response.data));
+  const img = {
+    uri: `http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`,
+  };
 
-  //   console.log(weatherData);
-  // }, []);
+  const toggleSwitch = () => setTemperature((previousState) => !previousState);
+
+  const convertToF = (celsius) => {
+    return Math.round((celsius * 9) / 5 + 32);
+  };
 
   return (
     <LinearGradient
@@ -38,33 +35,55 @@ export default function WeatherDetails({ route }) {
       style={{ flex: 1, paddingTop: 50, paddingHorizontal: 20 }}
     >
       <Header>
-        <BackButton>
+        <BackButton onPress={() => navigation.goBack()}>
           <BackButtonText>Voltar</BackButtonText>
         </BackButton>
+
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Switch
+            trackColor={{ false: "#767577", true: "#008df3" }}
+            thumbColor={"#f4f3f4"}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={temperature}
+            style={{ transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }] }}
+          />
+          <Text style={{ paddingLeft: 10 }}>
+            {temperature === true ? "ºF" : "ºC"}
+          </Text>
+        </View>
       </Header>
 
       <Body>
         <TempDatas>
-          <Image source={sun} />
+          <Image source={img} style={{ height: 100, width: 140 }} />
 
           <View>
-            <Temperature> {Math.round(item.temp)}ºC </Temperature>
+            <Temperature>
+              {" "}
+              {temperature
+                ? convertToF(item.temp) + "ºF"
+                : Math.round(item.temp) + "ºC"}{" "}
+            </Temperature>
             <MinMax>
-              {Math.round(item.temp_min)}ºC - {Math.round(item.temp_max)}ºC
+              {temperature
+                ? convertToF(item.temp_min) + "ºF"
+                : Math.round(item.temp_min) + "ºC"}{" "}
+              -{" "}
+              {temperature
+                ? convertToF(item.temp_max) + "ºF"
+                : Math.round(item.temp_max) + "ºC"}
             </MinMax>
           </View>
         </TempDatas>
-
         <CityInfos>
-          <CityWeather>
-            {item.weather.map((item) => item.description)}
+          <CityWeather color={item.weather[0].description}>
+            {item.weather[0].description}
           </CityWeather>
           <CityName>{item.name}</CityName>
         </CityInfos>
 
-        <WeatherList>
-          <WeatherForecast />
-        </WeatherList>
+        <WeatherForecast data={item} changeMetric={temperature} />
       </Body>
     </LinearGradient>
   );

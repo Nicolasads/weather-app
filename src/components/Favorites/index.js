@@ -28,10 +28,6 @@ export default function Favorites({ changeMetric }) {
     return Math.round((celsius * 9) / 5 + 32);
   };
 
-  useEffect(() => {
-    console.log("lista", getFavoritesList);
-  }, [getFavoritesList]);
-
   const renderItem = (item) => (
     <Card onPress={() => navigation.navigate("WeatherDetails", { item: item })}>
       <CardContent>
