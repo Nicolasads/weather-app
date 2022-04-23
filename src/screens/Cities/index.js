@@ -3,7 +3,7 @@ import { Text, TextInput, Switch } from "react-native";
 import { useSelector } from "react-redux";
 import { getCitiesList } from "../../features/cities/citiesSlice";
 
-import { CardComponent } from "../../components/Card";
+import { CitiesList } from "../../components/CitiesList";
 import AddCountry from "../../components/AddCountry";
 import Favorites from "../../components/Favorites";
 
@@ -69,7 +69,7 @@ export default function Cities() {
       <Favorites changeMetric={temperature} />
 
       <Content>
-        <CardComponent
+        <CitiesList
           data={getCities}
           changeMetric={temperature}
           filter={searchText}

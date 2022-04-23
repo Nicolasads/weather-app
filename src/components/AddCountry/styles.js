@@ -54,6 +54,15 @@ export const SearchButton = styled.TouchableOpacity`
   border-radius: 8px;
 `;
 
+export const Card = styled.View`
+  background-color: #ffff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 10px;
+  border-width: 1px;
+  border-color: #c1c1c1;
+`;
+
 export const CountryResult = styled.View`
   padding: 10px;
 `;

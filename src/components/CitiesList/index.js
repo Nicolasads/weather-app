@@ -17,7 +17,6 @@ import {
   CardHeaderSub,
   CardHeaderTemp,
   CardHeaderText,
-  CardWithoutTouchable,
   FavoriteButton,
   FavoriteText,
   NullItemDesc,
@@ -27,7 +26,7 @@ import {
   WeatherType,
 } from "./styles";
 
-export function CardComponent({ data, changeMetric, filter }) {
+export function CitiesList({ data, changeMetric, filter }) {
   const [cityList, setCityList] = useState(data);
   const [selected, setSelected] = useState(false);
 
@@ -151,8 +150,4 @@ export function CardComponent({ data, changeMetric, filter }) {
       }
     />
   );
-}
-
-export function AsyncCard({ children }) {
-  return <CardWithoutTouchable>{children}</CardWithoutTouchable>;
 }

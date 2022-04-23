@@ -2,9 +2,9 @@ import { Feather } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { View, Text, Modal, TextInput } from "react-native";
 import Toast from "react-native-toast-message";
-import { AsyncCard } from "../Card";
 import {
   AddCity,
+  Card,
   CardBody,
   CardHeader,
   CardHeaderSub,
@@ -21,7 +21,6 @@ import {
   SearchView,
 } from "./styles";
 import { useDispatch } from "react-redux";
-import axios from "axios";
 import { addCityItem } from "../../features/cities/citiesSlice";
 import { api, app_key } from "../../services/api";
 
@@ -95,7 +94,7 @@ export default function AddCountry({ visible, close }) {
 
           <CountryResult>
             {data.length !== 0 ? (
-              <AsyncCard>
+              <Card>
                 <CardHeader>
                   <CardHeaderText> {data.name} </CardHeaderText>
                   <CardHeaderSub>{data.sys.country}</CardHeaderSub>
@@ -108,7 +107,7 @@ export default function AddCountry({ visible, close }) {
                     </Text>
                   </AddCity>
                 </CardBody>
-              </AsyncCard>
+              </Card>
             ) : null}
           </CountryResult>
         </Content>
