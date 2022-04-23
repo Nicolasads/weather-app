@@ -1,7 +1,7 @@
-import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialIcons, AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
-import { View, FlatList, Text } from "react-native";
+import { View, FlatList } from "react-native";
 import { useDispatch } from "react-redux";
 import {
   addToFavorites,
@@ -20,6 +20,8 @@ import {
   CardWithoutTouchable,
   FavoriteButton,
   FavoriteText,
+  NullItemDesc,
+  NullItemText,
   RemoveItemButton,
   WeatherTemp,
   WeatherType,
@@ -28,13 +30,11 @@ import {
 export function CardComponent({ data, changeMetric, filter }) {
   const [cityList, setCityList] = useState(data);
   const [selected, setSelected] = useState(false);
-  const [favorite, setFavorite] = useState();
 
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
   const favoriteCity = (item, id) => {
-    setFavorite(item);
     setSelected(id);
 
     dispatch(addToFavorites(item));
@@ -125,7 +125,30 @@ export function CardComponent({ data, changeMetric, filter }) {
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => cardRender(item)}
       showsVerticalScrollIndicator={false}
-      ListHeaderComponent={<FavoriteText>Suas Cidades</FavoriteText>}
+      ListHeaderComponent={
+        <View>
+          <FavoriteText>Suas Cidades</FavoriteText>
+
+          {cityList.length === 0 ? (
+            <>
+              <AntDesign
+                name="questioncircleo"
+                size={40}
+                color="#555"
+                style={{ textAlign: "center", marginTop: 40, marginBottom: 10 }}
+              />
+              <NullItemText>
+                Sua lista de cidade está vazia, comece adicionando novas
+                cidades!
+              </NullItemText>
+              <NullItemDesc>
+                Use o botão "Adicionar Cidade" para adicionar uma cidade de sua
+                preferência
+              </NullItemDesc>
+            </>
+          ) : null}
+        </View>
+      }
     />
   );
 }

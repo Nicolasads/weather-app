@@ -63,3 +63,15 @@ export const FavoriteButton = styled.TouchableOpacity``;
 export const RemoveItemButton = styled.TouchableOpacity`
   margin-right: 15px;
 `;
+
+export const NullItemText = styled.Text`
+  color: #555;
+  text-align: center;
+  font-size: 20px;
+  margin: 10px 5px 20px;
+  font-weight: 700;
+`;
+export const NullItemDesc = styled.Text`
+  text-align: center;
+  color: #858585;
+`;
