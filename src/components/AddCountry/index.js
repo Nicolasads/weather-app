@@ -27,6 +27,7 @@ import { api, app_key } from "../../services/api";
 export default function AddCountry({ visible, close }) {
   const [city, setCity] = useState("");
   const [data, setData] = useState([]);
+  const [weatherResult, setWeatherResult] = useState({});
 
   const dispatch = useDispatch();
 
@@ -36,6 +37,16 @@ export default function AddCountry({ visible, close }) {
     );
 
     setData(result.data);
+
+    if (data !== null) {
+      api
+        .get(
+          `weather?lat=${data.coord.lat}&lon=${data.coord.lon}&appid=${app_key}&lang=pt&units=metric`
+        )
+        .then((response) => {
+          setWeatherResult(response.data);
+        });
+    }
   };
 
   const addCidade = (item, bool) => {
@@ -47,10 +58,10 @@ export default function AddCountry({ visible, close }) {
       uf: item.sys.country,
       lat: item.coord.lat,
       lon: item.coord.lon,
-      temp: item.main.temp,
-      temp_max: item.main.temp_max,
-      temp_min: item.main.temp_min,
-      weather: item.weather,
+      temp: weatherResult.main.temp,
+      temp_max: weatherResult.main.temp_max,
+      temp_min: weatherResult.main.temp_min,
+      weather: weatherResult.weather,
     };
 
     dispatch(addCityItem(data));
