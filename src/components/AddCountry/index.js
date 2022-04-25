@@ -37,16 +37,6 @@ export default function AddCountry({ visible, close }) {
     );
 
     setData(result.data);
-
-    if (data !== null) {
-      api
-        .get(
-          `weather?lat=${data.coord.lat}&lon=${data.coord.lon}&appid=${app_key}&lang=pt&units=metric`
-        )
-        .then((response) => {
-          setWeatherResult(response.data);
-        });
-    }
   };
 
   const addCidade = (item, bool) => {
@@ -58,10 +48,10 @@ export default function AddCountry({ visible, close }) {
       uf: item.sys.country,
       lat: item.coord.lat,
       lon: item.coord.lon,
-      temp: weatherResult.main.temp,
-      temp_max: weatherResult.main.temp_max,
-      temp_min: weatherResult.main.temp_min,
-      weather: weatherResult.weather,
+      temp: item.main.temp,
+      temp_max: item.main.temp_max,
+      temp_min: item.main.temp_min,
+      weather: item.weather,
     };
 
     dispatch(addCityItem(data));
