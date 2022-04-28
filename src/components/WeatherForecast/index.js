@@ -1,8 +1,9 @@
-import { View, FlatList, Text, ScrollView } from "react-native";
+import { View, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
-import { api, app_key } from "../../services/api";
+import { api } from "../../services/api";
 import moment from "moment-timezone";
 import "moment/locale/pt-br";
+import { WEATHER_API_KEY } from "@env";
 
 import {
   DateName,
@@ -23,7 +24,7 @@ export default function WeatherForecast({ data, changeMetric }) {
   useEffect(() => {
     api
       .get(
-        `onecall?lat=${data.lat}&lon=${data.lon}&appid=${app_key}&exclude=minutely,hourly&lang=pt&units=metric`
+        `onecall?lat=${data.lat}&lon=${data.lon}&appid=${WEATHER_API_KEY}&exclude=minutely,hourly&lang=pt&units=metric`
       )
       .then((response) => {
         setTimezone(response.data.timezone);

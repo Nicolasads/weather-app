@@ -4,6 +4,7 @@ export const Header = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  margin-top: 40px;
 `;
 
 export const BackButton = styled.TouchableOpacity`
@@ -42,7 +43,6 @@ export const MinMax = styled.Text`
 `;
 
 export const CityInfos = styled.View`
-  margin-top: 18px;
   align-items: center;
 `;
 

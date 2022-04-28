@@ -28,16 +28,12 @@ import {
 
 export function CitiesList({ data, changeMetric, filter }) {
   const [cityList, setCityList] = useState(data);
-  const [selected, setSelected] = useState(false);
 
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
   const favoriteCity = (item, id) => {
-    setSelected(id);
-
     dispatch(addToFavorites(item));
-    dispatch(removeCityItem({ id: item.id }));
   };
 
   const convertToF = (celsius) => {
@@ -106,9 +102,9 @@ export function CitiesList({ data, changeMetric, filter }) {
 
               <FavoriteButton onPress={() => favoriteCity(item, item.id)}>
                 <MaterialIcons
-                  name={selected === item.id ? "favorite" : "favorite-outline"}
+                  name="favorite-outline"
+                  color="#858585"
                   size={30}
-                  color={selected === item.id ? "#008df3" : "#b1b1b1"}
                 />
               </FavoriteButton>
             </View>

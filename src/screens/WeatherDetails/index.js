@@ -32,7 +32,7 @@ export default function WeatherDetails({ route, navigation }) {
   return (
     <LinearGradient
       colors={["#A1CDFF", "#C2DEFF", "#FEFEFF"]}
-      style={{ flex: 1, paddingTop: 50, paddingHorizontal: 20 }}
+      style={{ flex: 1, paddingHorizontal: 20 }}
     >
       <Header>
         <BackButton onPress={() => navigation.goBack()}>
