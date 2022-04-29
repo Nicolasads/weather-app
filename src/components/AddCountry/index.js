@@ -24,6 +24,7 @@ import { useDispatch } from "react-redux";
 import { addCityItem } from "../../features/cities/citiesSlice";
 import { api } from "../../services/api";
 import { WEATHER_API_KEY } from "@env";
+import { globalTheme } from "../../global/themes/globalTheme";
 
 export default function AddCountry({ visible, close }) {
   const [city, setCity] = useState("");
@@ -105,7 +106,7 @@ export default function AddCountry({ visible, close }) {
 
                   <CardBody>
                     <AddCity onPress={() => addCidade(data, false)}>
-                      <Text style={{ color: "#008df3", fontSize: 15 }}>
+                      <Text style={{ color: globalTheme.blue, fontSize: 15 }}>
                         Adicinar Cidade
                       </Text>
                     </AddCity>

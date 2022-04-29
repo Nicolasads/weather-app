@@ -6,25 +6,29 @@ import { persistStore } from "redux-persist";
 import Toast from "react-native-toast-message";
 import Routes from "./src/routes/routes";
 import { ActivityIndicator, View } from "react-native";
+import { ThemeProvider } from "styled-components";
+import { globalTheme } from "./src/global/themes/globalTheme";
 
 export default function App() {
   let persistor = persistStore(store);
 
   return (
     <NavigationContainer>
-      <Provider store={store}>
-        <PersistGate
-          loading={
-            <View style={{ flex: 1, justifyContent: "center" }}>
-              <ActivityIndicator size="large" color="lightblue" />
-            </View>
-          }
-          persistor={persistor}
-        >
-          <Routes />
-          <Toast />
-        </PersistGate>
-      </Provider>
+      <ThemeProvider theme={globalTheme}>
+        <Provider store={store}>
+          <PersistGate
+            loading={
+              <View style={{ flex: 1, justifyContent: "center" }}>
+                <ActivityIndicator size="large" color={globalTheme.blue} />
+              </View>
+            }
+            persistor={persistor}
+          >
+            <Routes />
+            <Toast />
+          </PersistGate>
+        </Provider>
+      </ThemeProvider>
     </NavigationContainer>
   );
 }

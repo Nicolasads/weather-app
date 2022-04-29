@@ -18,6 +18,7 @@ import {
   RemoveFavorite,
   TempValue,
 } from "./styles";
+import { globalTheme } from "../../global/themes/globalTheme";
 
 export default function Favorites({ changeMetric }) {
   const dispatch = useDispatch();
@@ -59,7 +60,7 @@ export default function Favorites({ changeMetric }) {
         <RemoveFavorite
           onPress={() => dispatch(removeFromFavorites({ id: item.id }))}
         >
-          <FontAwesome5 name="trash" size={26} color="#008df3" />
+          <FontAwesome5 name="trash" size={26} color={globalTheme.blue} />
         </RemoveFavorite>
       </CardFooter>
     </Card>

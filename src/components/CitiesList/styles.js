@@ -1,12 +1,12 @@
 import styled from "styled-components/native";
 
 export const Card = styled.TouchableOpacity`
-  background-color: #ffff;
+  background-color: ${(props) => props.theme.white};
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 10px;
   border-width: 1px;
-  border-color: #c1c1c1;
+  border-color: ${(props) => props.theme.lightGrey};
 `;
 
 export const FavoriteText = styled.Text`
@@ -16,12 +16,12 @@ export const FavoriteText = styled.Text`
 `;
 
 export const CardWithoutTouchable = styled.View`
-  background-color: #ffff;
+  background-color: ${(props) => props.theme.white};
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 10px;
   border-width: 1px;
-  border-color: #c1c1c1;
+  border-color: ${(props) => props.theme.lightGrey};
 `;
 
 export const CardHeader = styled.View`
@@ -32,15 +32,15 @@ export const CardHeader = styled.View`
 
 export const CardHeaderText = styled.Text`
   font-size: 20px;
-  color: #595959;
+  color: ${(props) => props.theme.darkGrey};
 `;
 export const CardHeaderSub = styled.Text`
   font-size: 16px;
-  color: #959595;
+  color: ${(props) => props.theme.mediumGrey};
 `;
 export const CardHeaderTemp = styled.Text`
   font-size: 22px;
-  color: #676767;
+  color: ${(props) => props.theme.grey};
 `;
 
 export const CardBody = styled.View`
@@ -51,7 +51,7 @@ export const CardBody = styled.View`
 `;
 
 export const WeatherType = styled.Text`
-  color: #008df3;
+  color: ${(props) => props.theme.blue};
 `;
 
 export const WeatherTemp = styled.Text`
@@ -65,7 +65,7 @@ export const RemoveItemButton = styled.TouchableOpacity`
 `;
 
 export const NullItemText = styled.Text`
-  color: #555;
+  color: ${(props) => props.theme.darkGrey};
   text-align: center;
   font-size: 20px;
   margin: 10px 5px 20px;
@@ -73,5 +73,5 @@ export const NullItemText = styled.Text`
 `;
 export const NullItemDesc = styled.Text`
   text-align: center;
-  color: #858585;
+  color: ${(props) => props.theme.mediumGrey};
 `;

@@ -18,6 +18,7 @@ import {
   HeaderText,
   InputView,
 } from "./styles";
+import { globalTheme } from "../../global/themes/globalTheme";
 
 export default function Cities() {
   const [temperature, setTemperature] = useState(false);
@@ -55,9 +56,12 @@ export default function Cities() {
         </InputView>
 
         <Switch
-          trackColor={{ false: "#767577", true: "#008df3" }}
-          thumbColor={"#f4f3f4"}
-          ios_backgroundColor="#3e3e3e"
+          trackColor={{
+            false: globalTheme.mediumGrey,
+            true: globalTheme.blue,
+          }}
+          thumbColor={globalTheme.white}
+          ios_backgroundColor={globalTheme.darkGrey}
           onValueChange={toggleSwitch}
           value={temperature}
           style={{ transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }] }}

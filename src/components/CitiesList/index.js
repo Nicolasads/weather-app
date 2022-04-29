@@ -25,6 +25,7 @@ import {
   WeatherTemp,
   WeatherType,
 } from "./styles";
+import { globalTheme } from "../../global/themes/globalTheme";
 
 export function CitiesList({ data, changeMetric, filter }) {
   const [cityList, setCityList] = useState(data);
@@ -97,13 +98,13 @@ export function CitiesList({ data, changeMetric, filter }) {
               <RemoveItemButton
                 onPress={() => dispatch(removeCityItem({ id: item.id }))}
               >
-                <FontAwesome5 name="trash" size={26} color="#008df3" />
+                <FontAwesome5 name="trash" size={26} color={globalTheme.blue} />
               </RemoveItemButton>
 
               <FavoriteButton onPress={() => favoriteCity(item, item.id)}>
                 <MaterialIcons
                   name="favorite-outline"
-                  color="#858585"
+                  color={globalTheme.mediumGrey}
                   size={30}
                 />
               </FavoriteButton>
@@ -129,7 +130,7 @@ export function CitiesList({ data, changeMetric, filter }) {
               <AntDesign
                 name="questioncircleo"
                 size={40}
-                color="#555"
+                color={globalTheme.grey}
                 style={{ textAlign: "center", marginTop: 40, marginBottom: 10 }}
               />
               <NullItemText>

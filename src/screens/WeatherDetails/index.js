@@ -14,6 +14,7 @@ import {
   Temperature,
 } from "./styles";
 import WeatherForecast from "../../components/WeatherForecast";
+import { globalTheme } from "../../global/themes/globalTheme";
 
 export default function WeatherDetails({ route, navigation }) {
   const [temperature, setTemperature] = useState(false);
@@ -31,8 +32,12 @@ export default function WeatherDetails({ route, navigation }) {
 
   return (
     <LinearGradient
-      colors={["#A1CDFF", "#C2DEFF", "#FEFEFF"]}
       style={{ flex: 1, paddingHorizontal: 20 }}
+      colors={[
+        globalTheme.mediumBlue,
+        globalTheme.lightBlue,
+        globalTheme.white,
+      ]}
     >
       <Header>
         <BackButton onPress={() => navigation.goBack()}>

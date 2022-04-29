@@ -83,7 +83,6 @@ export default function WeatherForecast({ data, changeMetric }) {
       keyExtractor={(item, index) => index}
       ListHeaderComponent={<WeatherTitle>Próximos dias</WeatherTitle>}
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={{ paddingBottom: 150 }}
     />
   );
 }

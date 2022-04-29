@@ -21,7 +21,9 @@ export const BackButtonText = styled.Text`
   color: #fff;
 `;
 
-export const Body = styled.View``;
+export const Body = styled.View`
+  flex: 1;
+`;
 
 export const TempDatas = styled.View`
   flex-direction: row;
